@@ -29,13 +29,16 @@ class Malthus:
         '''
         Calculate constant lambda
         '''
-        _lambda = lambda _t1, _p1: log(_p1/self.p0)/(_t1-self.t0)
-        if t1 != None and p1 != None:
-            self._lambda = _lambda(t1, p1)
-            return self._lambda
-        else:
-            self._lambda = _lambda(self.t1, self.p1)
-            return self._lambda
+        try:
+            _lambda = lambda _t1, _p1: log(_p1/self.p0)/(_t1-self.t0)
+            if t1 != None and p1 != None:
+                self._lambda = _lambda(t1, p1)
+                return self._lambda
+            else:
+                self._lambda = _lambda(self.t1, self.p1)
+                return self._lambda
+        except:
+            print("Error model!!!")
     
 
     def calculate_population(self, t1 = None):
@@ -44,13 +47,16 @@ class Malthus:
         args:
             t1: 特定時間
         '''
-        _population = lambda _t1: self.p0 * pow(exp(1), self._lambda * (_t1 - self.t0))
-        if t1 != None:
-            self.population = _population(t1)
-            return self.population
-        else:
-            self.population = _population(self.t1)
-            return self.population
+        try:
+            _population = lambda _t1: self.p0 * pow(exp(1), self._lambda * (_t1 - self.t0))
+            if t1 != None:
+                self.population = _population(t1)
+                return self.population
+            else:
+                self.population = _population(self.t1)
+                return self.population
+        except:
+            print("Error model!!!")
 
 if __name__ == "__main__":
     a = Malthus(1966, 1300e6, 1971.1, 1500e6)

@@ -60,10 +60,12 @@ def standard_deviation_of_compare(data_, real_population):
         data_list.append(a)
     for b in real_population.values():
         real_population_list.append(b)
-
-    for a in range(len(data_list)):
-        temp += math.pow(real_population_list[a] - data_list[a], 2)
-    sn = math.sqrt(temp/len(data_)-1)
+    try:
+        for a in range(len(data_list)):
+            temp += math.pow(real_population_list[a] - data_list[a], 2)
+        sn = math.sqrt(temp/len(data_)-1)
+    except:
+        sn = None
     return sn
 
 def feature1():

@@ -22,6 +22,7 @@ class population_api:
         json_data = json.loads(requests.get(api_url+"/countries").text)
         result = json_data["countries"]
         result.remove("Australia/New Zealand")
+        result.remove("Least developed countries")
         return result
     
     def wp_rank(self, dob = None, sex = None, country = None, require = None, date = None):
@@ -56,7 +57,10 @@ class population_api:
         for n in json_result:
             #for debug
             print("Country: ", self.country, "\t n: ", n)
-            sum_of_population += int(n['males']) + int(n['females'])
+            try:
+                sum_of_population += int(n['males']) + int(n['females'])
+            except:
+                print("錯誤！")
             #print(sum_of_population)
 
         return sum_of_population
