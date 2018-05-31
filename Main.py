@@ -52,12 +52,27 @@ def feature3():
     
     #for test only
     print(data)
+    saveImg(data)
 
 
-    def saveImg(data):
-        for country in data:
-            print(type(country))
-        pass
+def saveImg(data):
+    #covert dict to list
+    cal_xs, cal_ys = [], []
+    real_xs, real_ys = [], []
+    for country in data:
+        for i in data[country][0]:
+            cal_xs.append(i)
+            cal_ys.append(data[country][0][i])
+        for j in data[country][1]:
+            real_xs.append(j)
+            real_ys.append(data[country][1][j])
+        #save figure
+        grap = pylab
+        grap.title(country)
+        grap.plot(cal_xs, cal_ys, "b")
+        grap.plot(real_xs, real_ys, "#FFA500")
+        grap.savefig("temp/"+str(country))
+
 
 def standard_deviation_of_compare(data_, real_population):
     sn = 0
