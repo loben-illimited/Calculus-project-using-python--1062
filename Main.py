@@ -12,7 +12,7 @@ def main():
     info = "人口增長推測 \nAuthor: Lo Ben (loben@illimited.cf) \n"
     print(info)
 
-    feature = "1. 利用Malthus推算國家人口 \n2. 輸出實際人口數量 \n3. 輸出所有地區的人口數量 \n4. 分別輸出Malthus和實際人口數據及圖形 \n>>> "
+    feature = "1. 利用Malthus推算國家人口 \n2. 輸出實際人口數量 \n3. 輸出所有地區的人口數量 \n4. 分別輸出Malthus和實際人口數據及圖形 \n5. 結合feature4，將所有數據儲存在html檔案裏面 \n>>> "
     selection = input(feature)
 
     if int(selection) == 1:
@@ -23,37 +23,11 @@ def main():
         feature3()
     elif int(selection) == 4:
         feature4()
+    elif int(selection) == 5:
+        pass
 
-def feature3():
-    #test only
-    all_countries = input_country()
-
-    #檢查開始和結束時間上時是否有logic error
-    while(True):
-        _begin = int(input("開始年份： "))
-        _end = int(input("結束年份： "))
-        if _begin < _end:
-            break
-        else:
-            print("輸入錯誤，請重新輸入")
-    
-    #all_countries = population_api(None).all_countries()
-    data = {} #store country all data
-    for country in all_countries:
-        #malthus_model
-        malthus_model = Malthus_Country(country).get_interval_population(_begin, _end)
-        #real population
-        real_population = population_api(country).population_of_year_interval(_begin, _end)
-        
-        standard_deviation_of_compare(malthus_model, real_population)
-
-        #data
-        data[country] = [malthus_model, real_population, standard_deviation_of_compare(malthus_model, real_population)]
-    
-    #for test only
-    print(data)
-    saveImg(data)
-
+def feature5():
+    pass
 
 def saveImg(data):
     #covert dict to list
@@ -131,6 +105,7 @@ def feature1():
 
 def feature2():
     _input = input_country()
+    print(_input)
     info = "輸入開始年份及結束年份"
     print(info)
 
@@ -164,6 +139,37 @@ def feature2():
         pylab.plot(population_xs, popylation_ys)
         pylab.show()
         index += 1
+
+def feature3():
+    
+    info = "這個選項可以把所有國家的人口數量及以Malthus推算的人口數量畫出，並儲存在 .\\temp 裏面 \n而圖中藍色線為真實人口數量，而燈色線則為利用Malthus推測的人口數量"
+    print(info)
+
+    #檢查開始和結束時間上時是否有logic error
+    while(True):
+        _begin = int(input("開始年份： "))
+        _end = int(input("結束年份： "))
+        if _begin < _end:
+            break
+        else:
+            print("輸入錯誤，請重新輸入")
+    
+    all_countries = population_api(None).all_countries()
+    data = {} #store country all data
+    for country in all_countries:
+        #malthus_model
+        malthus_model = Malthus_Country(country).get_interval_population(_begin, _end)
+        #real population
+        real_population = population_api(country).population_of_year_interval(_begin, _end)
+        
+        standard_deviation_of_compare(malthus_model, real_population)
+
+        #data
+        data[country] = [malthus_model, real_population, standard_deviation_of_compare(malthus_model, real_population)]
+    
+    #for test only
+    print(data)
+    saveImg(data)
 
 def feature4():
     _input = input_country()
@@ -243,7 +249,7 @@ def input_country():
     for n in input_list:
         n = n.strip()
         if n.isnumeric():
-            input_list[index] = all_countries[index]
+            input_list[index] = all_countries[int(n)]
         index += 1
     return input_list
 
