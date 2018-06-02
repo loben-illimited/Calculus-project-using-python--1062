@@ -15,7 +15,7 @@ def main():
     print(info)
 
     feature = "1. 利用Malthus推算國家人口 \n2. 輸出實際人口數量 \n3. 輸出所有地區的人口數量 \n4. 分別輸出Malthus和實際人口數據及圖形 \n5. 結合feature4，將所有數據儲存在html檔案裏面 \n>>> "
-    selection = input(feature)
+    selection = int(input(feature))
 
     if int(selection) == 1:
         feature1()
@@ -26,23 +26,23 @@ def main():
     elif int(selection) == 4:
         feature4()
     elif int(selection) == 5:
-        pass
+        feature5()
 
 def feature5():
-    info = "將所有數據輸出成html \n1.已執行feature3 \n2. 未執行feature3\n"
+    info = "將所有數據輸出成html \n1. 未執行feature3 \n2. 已執行feature3\n"
     print(info)
     opition = input(">>>")
     if opition == 1:
         feature3()
         title = input("請輸入您想要的檔案名稱：")
-        add_readme = input("需要加入readme嗎？(y or n")
+        add_readme = input("需要加入readme嗎？(y or n): ")
         add_readme_bool = True
         if re.search("y", add_readme) == None:
             add_readme_bool = False
         i.HTML_write(title, add_readme = add_readme_bool)
     else:
         title = input("請輸入您想要的檔案名稱：")
-        add_readme = input("需要加入readme嗎？(y or n")
+        add_readme = input("需要加入readme嗎？(y or n): ")
         add_readme_bool = True
         if re.search("y", add_readme) == None:
             add_readme_bool = False
@@ -237,9 +237,9 @@ def feature4():
                 counter = 0
             counter += 1
         print("\n")
-        pylab.title("use malthus model calculate "+_input[index]+" population")
-        pylab.plot(Malthus_xs, Malthus_ys)
-        pylab.show()
+        pylab.title(_input[index])
+        pylab.plot(Malthus_xs, Malthus_ys, "b")
+        #pylab.show()
         index += 1
 
 
@@ -262,8 +262,8 @@ def feature4():
                 counter = 0
             counter += 1
         print("\n")
-        pylab.title("real "+_input[index]+" population")
-        pylab.plot(population_xs, popylation_ys)
+        #pylab.title("real "+_input[index]+" population")
+        pylab.plot(population_xs, popylation_ys, "y")
         pylab.show()
         index += 1
 

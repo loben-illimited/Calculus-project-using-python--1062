@@ -23,9 +23,16 @@ class HTML_write:
 
         #store result
         self.table = []
+        
+        self.filename = []
+
+        self.sn = []
+
+        self.sn_filename_dict = {}
 
         self.construct_html(self.title, add_readme)
-    
+
+
     def __construct_head(self):
         head = '''
             <!doctype html>
@@ -59,6 +66,7 @@ class HTML_write:
         path = "temp/"
         for filename in os.listdir(path):
             if re.search(".png", filename) != None:
+                self.filename.append(filename.rstrip(".png"))
                 ext_filename = re.findall('\..*$', filename)[0].strip(".")
                 payload = "data:image/"+ext_filename+";base64,"
                 print(filename + "已加入")
@@ -104,8 +112,9 @@ class HTML_write:
         html_code += self.__result() #add result img
         html_code += self.__construct_tail()
 
-        output_html_file = open(filename, "w", encoding="utf-8")
+        output_html_file = open(filename+".html", "w", encoding="utf-8")
         output_html_file.write(html_code)
+
 
     def construct_hole_table(self):
         _temp_list = []
@@ -134,7 +143,7 @@ class HTML_write:
             table += "</tr>"
         table += "</table>"
         self.table += [table]
-        self.sn = "<span class= 'sd'>"+str(sd)+"</span>"
+        #self.sn += ["<span class= 'sd'>"+str(sd)+"</span>"]
         
         #test
         return table
