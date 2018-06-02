@@ -51,10 +51,10 @@ class Malthus:
             _population = lambda _t1: self.p0 * pow(exp(1), self._lambda * (_t1 - self.t0))
             if t1 != None:
                 self.population = _population(t1)
-                return self.population
+                return int(self.population)
             else:
                 self.population = _population(self.t1)
-                return self.population
+                return int(self.population)
         except:
             print("Error model!!!")
 

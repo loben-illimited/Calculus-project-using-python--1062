@@ -29,23 +29,23 @@ def main():
 def feature5():
     pass
 
-def saveImg(data):
+def saveImg(data, country):
     #covert dict to list
     cal_xs, cal_ys = [], []
     real_xs, real_ys = [], []
-    for country in data:
-        for i in data[country][0]:
-            cal_xs.append(i)
-            cal_ys.append(data[country][0][i])
-        for j in data[country][1]:
-            real_xs.append(j)
-            real_ys.append(data[country][1][j])
-        #save figure
-        grap = pylab
-        grap.title(country)
-        grap.plot(cal_xs, cal_ys, "b")
-        grap.plot(real_xs, real_ys, "#FFA500")
-        grap.savefig("temp/"+str(country))
+    for i in data[0]:
+        cal_xs.append(i)
+        cal_ys.append(data[0][i])
+    for j in data[1]:
+        real_xs.append(j)
+        real_ys.append(data[1][j])
+    #save figure
+    grap = pylab
+    grap.clf()
+    grap.title(country)
+    grap.plot(cal_xs, cal_ys, "b")
+    grap.plot(real_xs, real_ys, "#FFA500")
+    grap.savefig("temp/"+str(country))
 
 
 def standard_deviation_of_compare(data_, real_population):
@@ -167,11 +167,12 @@ def feature3():
         standard_deviation_of_compare(malthus_model, real_population)
 
         #data
-        data[country] = [malthus_model, real_population, standard_deviation_of_compare(malthus_model, real_population)]
+        data = [malthus_model, real_population, standard_deviation_of_compare(malthus_model, real_population)]
+        saveImg(data, country)
     
     #for test only
-    print(data)
-    saveImg(data)
+    #print(data)
+    
 
 def feature4():
     _input = input_country()

@@ -23,6 +23,7 @@ class population_api:
         result = json_data["countries"]
         result.remove("Australia/New Zealand")
         result.remove("Least developed countries")
+        result.remove("Less developed regions, excluding least developed countries")
         return result
     
     def wp_rank(self, dob = None, sex = None, country = None, require = None, date = None):
