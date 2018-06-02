@@ -86,9 +86,9 @@ class HTML_write:
             img_html_code += '<div class = "figure"><h3 class = "figure_title">'+i[1]+'</h3> <img src = "'+i[0]+'"></div>'
         '''
         for i in range(len(self.img_tag_list)):
-            img_html_code += '<h3 class = "figure_title">'+self.img_tag_list[i][1]+'</h3>'
-            img_html_code += '<div class = "figure">'+self.table[i]
-            img_html_code += '<img src = "'+self.img_tag_list[i][0]+'"></div>'
+            img_html_code += '<div class = "figure"><h3 class = "figure_title">'+self.img_tag_list[i][1]+'</h3>'
+            img_html_code += self.table[i]
+            img_html_code += '<img src = "'+self.img_tag_list[i][0]+'"></div><hr>'
         return img_html_code
     
     def __result(self):
@@ -118,7 +118,7 @@ class HTML_write:
 
     
     def __process_a_table(self, list):
-        table = "<table>"
+        table = "<table class = 'rwd-table'>"
         table += "<tr><th>年份</th><th>Malthus模型預測</th><th>真實人口</th><th>預測與實際人口相差</th></tr>"
         year_list = [i for i in list[0]]
         malthus_data_list = [list[0][i] for i in list[0]]

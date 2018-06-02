@@ -18,7 +18,11 @@ class Malthus_Country:
         self.Malthus_obj = Malthus(self.default_begin_year, self.p0, self.default_begin_year + self.interval, self.p1)
 
     def get_population_of_year(self, year):
-        return int(self.Malthus_obj.calculate_population(year))
+        try:
+            return int(self.Malthus_obj.calculate_population(year))
+        except:
+            print("get_population_of_year error!!!")
+            return 0
 
     def get_interval_population(self, begin_year, end_year):
         result = {}
