@@ -2,6 +2,8 @@ from population_api import *
 from Malthus_Country import *
 import pylab
 import math
+import HTML_write as i
+import re
 
 def main():
     '''
@@ -27,7 +29,30 @@ def main():
         pass
 
 def feature5():
-    pass
+    info = "將所有數據輸出成html \n1.已執行feature3 \n2. 未執行feature3\n"
+    print(info)
+    opition = input(">>>")
+    if opition == 1:
+        feature3()
+        title = input("請輸入您想要的檔案名稱：")
+        add_readme = input("需要加入readme嗎？(y or n")
+        add_readme_bool = True
+        if re.search("y", add_readme) == None:
+            add_readme_bool = False
+        i.HTML_write(title, add_readme = add_readme_bool)
+    else:
+        title = input("請輸入您想要的檔案名稱：")
+        add_readme = input("需要加入readme嗎？(y or n")
+        add_readme_bool = True
+        if re.search("y", add_readme) == None:
+            add_readme_bool = False
+        i.HTML_write(title, add_readme = add_readme_bool)
+    
+
+def saveData2Json(data, country):
+    path = "temp/"
+    with open(path+country+".json", "w") as outfile:
+        json.dump(data, outfile)
 
 def saveImg(data, country):
     #covert dict to list
@@ -158,6 +183,7 @@ def feature3():
     
     all_countries = population_api(None).all_countries()
     data = {} #store country all data
+    ext_data = {}
     for country in all_countries:
         #malthus_model
         malthus_model = Malthus_Country(country).get_interval_population(_begin, _end)
@@ -168,7 +194,12 @@ def feature3():
 
         #data
         data = [malthus_model, real_population, standard_deviation_of_compare(malthus_model, real_population)]
+
+        #ext_data
+        ext_data[country] =  data
+
         saveImg(data, country)
+        saveData2Json(data, country)
     
     #for test only
     #print(data)
