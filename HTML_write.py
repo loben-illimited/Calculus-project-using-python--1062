@@ -48,8 +48,6 @@ class HTML_write:
         ''' + str(markdown2.markdown_path("README.md")).replace("<em>", "").replace("</em>", "") +'''
                 </div>
         '''
-        a = open("readme.html", "w", encoding="utf-8")
-        a.write(readme)
         return readme
     
     def __img2base64_in_Path(self):
