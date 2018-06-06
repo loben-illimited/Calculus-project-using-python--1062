@@ -70,21 +70,29 @@ Output:
 ![](https://i.imgur.com/uSPLfnS.png)
 ![](https://i.imgur.com/3r40IJB.png)
 
+-----
+
 ## feature 2
 ![](https://i.imgur.com/TsSpevF.png)
 ![](https://i.imgur.com/vfItoHH.png)
-
+輸出
 ![](https://i.imgur.com/xTXom0C.png)
 ![](https://i.imgur.com/x5T4xaO.png)
+
+-----
 
 ## feature 3
 ![](https://i.imgur.com/C55MKAE.png)
 輸出結果
 ![](https://i.imgur.com/J5Cb1v5.png)
 
+-----
+
 ## feature 4
 ![](https://i.imgur.com/7CPJWcR.png)
 此模式下 **藍色為預測人口數量** 而 **黃色為實際人口數量**
+
+-----
 
 ## feature 5
 ![](https://i.imgur.com/LvgGGnP.png)
@@ -119,3 +127,8 @@ Output:
 而且我認為可以在報告新增更多人口預測模型，從而比較那一模型更貼及現況。
 
 以及輸出的網頁美化不足。
+
+#完整程式碼
+
+請到[github](https://github.com/loben-illimited/Calculus-project-using-python--1062)上下載
+
