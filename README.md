@@ -95,6 +95,13 @@ Output:
 ![](https://i.imgur.com/W7CAnSR.png)
 ![](https://i.imgur.com/AfSiPwn.png)
 
+# 程式碼解說
+
+<script src="https://gist.github.com/loben-illimited/8018e6507d123ca11815c196aac5cd65.js"></script>
+
+- `Malthus_Country.py` 建立的目的是為了更方便去查出特定期間內人口的數量
+
+
 # 感想
 
 經過是次報告令我對python的語法有更進一步的認識，相對於分組報告，我更喜歡自己一個人工作，反正也是只有自己一個人工作。
@@ -112,4 +119,3 @@ Output:
 而且我認為可以在報告新增更多人口預測模型，從而比較那一模型更貼及現況。
 
 以及輸出的網頁美化不足。
-
